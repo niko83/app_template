@@ -1,5 +1,7 @@
-# !/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""Run file."""
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
-# run
+from app import settings
+from app.db.postgresql import settings as postgresql_settings
+import ipdb; ipdb.set_trace()
+
