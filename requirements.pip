@@ -1,2 +1,4 @@
 pika
 psycopg2
+argparse
+MySQL-python
