@@ -5,6 +5,8 @@ from app import settings as app_settings
 
 
 def _psql_runshell(settings_dict):
+    if app_settings.DEBUG:
+        os.putenv('PGPASSWORD', settings_dict['PASSWORD'])
     executable_name = 'psql'
     args = [executable_name]
     if settings_dict['USER']:
@@ -17,27 +19,29 @@ def _psql_runshell(settings_dict):
 
     os.execvp(executable_name, args)
 
+
 def _mysql_runshell(settings_dict):
     executable_name = 'mysql'
     args = [executable_name]
 
-    if user:
+    if settings_dict['USER']:
         args += ["--user=%s" % settings_dict['USER']]
-    if passwd:
+    if settings_dict['PASSWORD']:
         args += ["--password=%s" % settings_dict['PASSWORD']]
 
-    if host:
-        if '/' in host:
+    if settings_dict['HOST']:
+        if '/' in settings_dict['HOST']:
             args += ["--socket=%s" % settings_dict['HOST']]
         else:
             args += ["--host=%s" % settings_dict['HOST']]
 
-    if port:
+    if settings_dict['PORT']:
         args += ["--port=%s" % settings_dict['PORT']]
     if settings_dict['NAME']:
         args += [settings_dict['NAME']]
 
     os.execvp(executable_name, args)
+
 
 class Command(AbstractCommand):
 
@@ -59,4 +63,3 @@ class Command(AbstractCommand):
             runshell = _mysql_runshell
 
         runshell(settings_dict)
-

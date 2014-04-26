@@ -1,9 +1,12 @@
+sudo add-apt-repository ppa:fkrull/deadsnakes
+
 echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > "/etc/apt/sources.list.d/pgdg.list"
 wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
 
 
+sudo apt-get update;
 sudo apt-get upgrade;
-sudo apt-get install vim git tree colordiff sysstat ack-grep htop skype subversion mysql-server memcached rabbitmq-server libgeoip1 libgeoip-dev libmemcached-dev zlib1g-dev libssl-dev python-dev build-essential mysql-server python-mysqldb libmysqlclient-dev python-virtualenv python-pip postgresql-9.3 terminator
+sudo apt-get install vim git tree colordiff sysstat ack-grep htop skype subversion mysql-server memcached rabbitmq-server libgeoip1 libgeoip-dev libmemcached-dev zlib1g-dev libssl-dev python-dev build-essential mysql-server python-mysqldb libmysqlclient-dev python-virtualenv python-pip postgresql-9.3 terminator python2.6-dev
 
 #store git password
 sudo apt-get install libgnome-keyring-dev
