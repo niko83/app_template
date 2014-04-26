@@ -1,6 +1,5 @@
 from app import settings as app_settings, Settings
 from app.commands.abstract import AbstractCommand
-import os
 import sys
 
 
@@ -21,7 +20,12 @@ def update_settings(prefix, settings):
             setattr(Settings, long_attr_name, _closed_attr)
 
 
+def get_available_commands():
+    raise NotImplementedError
+
+
 def get_command_class(command_name):
+
     if not command_name:
         return
 

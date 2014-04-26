@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
-import sys
 
-from app import settings
-from app.db.postgresql import settings as postgresql_settings
-from app.utils.settings_manager import get_command_class
+import sys
+from app.utils.settings_manager import get_command_class, get_available_commands
 
 from argparse import ArgumentParser
 
@@ -22,10 +20,9 @@ try:
 except IndexError:
     pass
 
-command_class =  get_command_class(command_name)
+command_class = get_command_class(command_name)
 if command_class:
     command = command_class(arguments, command_args)
     command.run()
 else:
-    print 'all commands are: (not implemented)'
-    print 'all commands are dsf,fdg,fd'
+    print 'all commands are: %s' % ', '.join(get_available_commands())
