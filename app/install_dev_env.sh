@@ -20,6 +20,7 @@ git config --global difftool.prompt false
 git config --global alias.d difftool
 git config --global user.email "ktotutus@gmail.com"
 git config --global user.name "niko"
+git config --global core.editor vim
 
 sudo apt-get install exuberant-ctags nodejs
 cd ~; git clone  https://github.com/klen/.vim.git .vim

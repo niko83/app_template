@@ -35,9 +35,7 @@ class Settings(object):
     }
 
     INCLUDED_PATCH_FOR_SEARCH_COMMANDS = ('app.commands', 'app.migrations.commands')
-    MIGRATIONS = (
-        'app.migrations.0001_init_migrations_table.Migration',
-    )
+    MIGRATIONS = tuple()
 
     PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__).decode('utf-8') + '/../') + os.sep
 
