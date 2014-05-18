@@ -6,7 +6,7 @@ wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo ap
 
 sudo apt-get update;
 sudo apt-get upgrade;
-sudo apt-get install vim git tree colordiff sysstat ack-grep htop skype subversion mysql-server memcached rabbitmq-server libgeoip1 libgeoip-dev libmemcached-dev zlib1g-dev libssl-dev python-dev build-essential mysql-server python-mysqldb libmysqlclient-dev python-virtualenv python-pip postgresql-9.3 terminator python2.6-dev libpq-dev
+sudo apt-get install vim git tree colordiff sysstat ack-grep htop skype subversion mysql-server memcached rabbitmq-server libgeoip1 libgeoip-dev libmemcached-dev zlib1g-dev libssl-dev python-dev build-essential mysql-server python-mysqldb libmysqlclient-dev python-virtualenv python-pip postgresql-9.3 terminator python2.6-dev libpq-dev redis-server
 
 #store git password
 sudo apt-get install libgnome-keyring-dev
