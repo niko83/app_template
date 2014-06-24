@@ -3,6 +3,7 @@ sudo add-apt-repository ppa:fkrull/deadsnakes
 echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > "/etc/apt/sources.list.d/pgdg.list"
 wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
 
+curl -s https://get.docker.io/ubuntu/ | sudo sh
 
 sudo apt-get update;
 sudo apt-get upgrade;
@@ -102,7 +103,12 @@ collation-server = utf8_general_ci
 transaction-isolation = READ-COMMITTED
 default-time-zone = '+00:00'
 
+
+echo "export HISTSIZE=10000" >> ~/.bashrc
+
 USEFUL
 ======
 git show remote origin
 git log --graph --color-words --color --source --decorate --all
+
+glog = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) - %C(dim white)%an%C(reset)%C(bold yellow)%d%C(reset)' --all
