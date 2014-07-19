@@ -1,8 +1,11 @@
-sudo add-apt-repository ppa:fkrull/deadsnakes
+#PRE INSTALL
 
 echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > "/etc/apt/sources.list.d/pgdg.list"
-wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
 
+
+sudo add-apt-repository ppa:fkrull/deadsnakes
+
+wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
 
 sudo apt-get update;
 sudo apt-get upgrade;
@@ -12,7 +15,6 @@ sudo apt-get install vim git tree colordiff sysstat ack-grep htop skype subversi
 sudo apt-get install libgnome-keyring-dev
 sudo make --directory=/usr/share/doc/git/contrib/credential/gnome-keyring
 git config --global credential.helper /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
-                         
 
 git config --global push.default simple
 git config --global diff.tool vimdiff
@@ -68,18 +70,20 @@ sudo pip install virtualenvwrapper
 echo "export WORKON_HOME=~/.virtualenvs" >> ~/.bashrc
 echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
 
+echo "export HISTSIZE=10000" >> ~/.bashrc
 
-sudo vim /etc/postgresql/9.3/main/pg_hba.conf
 
-# исправляем в этой строке peer на md5
-#local   all             all                                     md5
-sudo /etc/init.d/postgresql restart
-sudo su postgres
-createuser -P username
-psql -c"ALTER USER username WITH SUPERUSER;"
-createdb -Uusername -W "portal_trunk"
-#проверяем
-psql -Uusername -W portal_trunk
+#sudo vim /etc/postgresql/9.3/main/pg_hba.conf
+#
+## исправляем в этой строке peer на md5
+##local   all             all                                     md5
+#sudo /etc/init.d/postgresql restart
+#sudo su postgres
+#createuser -P username
+#psql -c"ALTER USER username WITH SUPERUSER;"
+#createdb -Uusername -W "portal_trunk"
+##проверяем
+#psql -Uusername -W portal_trunk
 
 sudo wget http://hg.rabbitmq.com/rabbitmq-management/raw-file/rabbitmq_v2_8_7/bin/rabbitmqadmin -O /usr/local/bin/rabbitmqadmin
 sudo chmod +x /usr/local/bin/rabbitmqadmin
@@ -102,7 +106,6 @@ collation-server = utf8_general_ci
 transaction-isolation = READ-COMMITTED
 default-time-zone = '+00:00'
 
-export HISTSIZE=10000
 
 USEFUL
 ======
