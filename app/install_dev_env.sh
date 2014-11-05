@@ -1,9 +1,12 @@
-sudo add-apt-repository ppa:fkrull/deadsnakes
+#PRE INSTALL
 
 echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > "/etc/apt/sources.list.d/pgdg.list"
-wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
 
 curl -s https://get.docker.io/ubuntu/ | sudo sh
+
+sudo add-apt-repository ppa:fkrull/deadsnakes
+
+wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
 
 sudo apt-get update;
 sudo apt-get upgrade;
@@ -13,14 +16,13 @@ sudo apt-get install vim git tree colordiff sysstat ack-grep htop skype subversi
 sudo apt-get install libgnome-keyring-dev
 sudo make --directory=/usr/share/doc/git/contrib/credential/gnome-keyring
 git config --global credential.helper /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
-                         
 
 git config --global push.default simple
 git config --global diff.tool vimdiff
 git config --global difftool.prompt false
 git config --global alias.d difftool
-git config --global user.email "ktotutus@gmail.com"
-git config --global user.name "niko"
+git config --global user.email "m_nikolayenko@wargaming.net"
+git config --global user.name "m_nikolayenko"
 git config --global core.editor vim
 
 sudo apt-get install exuberant-ctags nodejs
@@ -32,7 +34,7 @@ sudo mkdir /var/www
 sudo chown niko:niko -R /var/www/
 
 
-VIM
+#VIM
 #source ~/.vim/rc.vim
 #
 #" Fast scrool
@@ -45,23 +47,23 @@ VIM
 #nnoremap <Leader>sl :SLoad last.vim<CR>
 #
 #let g:pymode_lint_ignore = "E501,C0110,C0111"
-#let g:pymode_lint_ignore = "E501,C0110,C0111,W191,W0312,E711,E126,W0403,E126"
+#let g:pymode_lint_ignore = "E501,C0110,C0111,W191,W0312,E711,E126,W0403,E126,D101,D102,D103,D100"
 #let g:pymode_lint_checker = "pylint,pep8,pyflakes,mccabe"
 #" ~/.vim/bundle/python-mode/pymode/libs/pylama/lint/pylama_pylint/pylint.rc
 #" [FORMAT]
 #" max-line-length=99
 #" [MASTER]
-#" init-hook='import sys; sys.path.append("/home/niko/testproject/");sys.path.append("/var/www/test_sp/");' 
+#" init-hook='import sys; sys.path.append("/home/niko/testproject/");sys.path.append("/var/www/test_sp/");'
 #
 #au BufNewFile,BufRead *.py setl colorcolumn=80,99
 #
-#call jsmode#Default("g:jsmode_largefile", 10)
+#" call jsmode#Default("g:jsmode_largefile", 10)
 #
 #set tpm=100
 #
 #" ~/.vim/bundle/python-mode.git/pylibs/ropevim.py
-#" 342             if isinstance(ci['info'], unicode):
-#" 343                 ci['info'] = repr(ci['info'])
+#" 342 if isinstance(ci['info'], unicode):
+#" 343 ci['info'] = repr(ci['info'])
 
 
 
@@ -69,18 +71,20 @@ sudo pip install virtualenvwrapper
 echo "export WORKON_HOME=~/.virtualenvs" >> ~/.bashrc
 echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
 
+echo "export HISTSIZE=10000" >> ~/.bashrc
 
-sudo vim /etc/postgresql/9.3/main/pg_hba.conf
 
-# исправляем в этой строке peer на md5
-#local   all             all                                     md5
-sudo /etc/init.d/postgresql restart
-sudo su postgres
-createuser -P username
-psql -c"ALTER USER username WITH SUPERUSER;"
-createdb -Uusername -W "portal_trunk"
-#проверяем
-psql -Uusername -W portal_trunk
+#sudo vim /etc/postgresql/9.3/main/pg_hba.conf
+#
+## исправляем в этой строке peer на md5
+##local   all             all                                     md5
+#sudo /etc/init.d/postgresql restart
+#sudo su postgres
+#createuser -P username
+#psql -c"ALTER USER username WITH SUPERUSER;"
+#createdb -Uusername -W "portal_trunk"
+##проверяем
+#psql -Uusername -W portal_trunk
 
 sudo wget http://hg.rabbitmq.com/rabbitmq-management/raw-file/rabbitmq_v2_8_7/bin/rabbitmqadmin -O /usr/local/bin/rabbitmqadmin
 sudo chmod +x /usr/local/bin/rabbitmqadmin
@@ -106,7 +110,6 @@ default-time-zone = '+00:00'
 
 
 echo "export HISTSIZE=10000" >> ~/.bashrc
-
 USEFUL
 ======
 git show remote origin
