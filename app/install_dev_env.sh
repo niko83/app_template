@@ -86,6 +86,7 @@ sudo wget http://hg.rabbitmq.com/rabbitmq-management/raw-file/rabbitmq_v2_8_7/bi
 sudo chmod +x /usr/local/bin/rabbitmqadmin
 sudo sh -c 'rabbitmqadmin --bash-completion > /etc/bash_completion.d/rabbitmqadmin'
 
+sudo /usr/lib/rabbitmq/bin/rabbitmq-plugins enable rabbit
 sudo rabbitmqctl add_user niko qweR123$
 sudo rabbitmqctl add_vhost /niko
 sudo rabbitmqctl set_permissions -p /niko niko ".*" ".*" ".*"
