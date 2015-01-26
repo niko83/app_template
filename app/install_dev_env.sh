@@ -2,6 +2,7 @@
 
 echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > "/etc/apt/sources.list.d/pgdg.list"
 
+curl -s https://get.docker.io/ubuntu/ | sudo sh
 
 sudo add-apt-repository ppa:fkrull/deadsnakes
 
@@ -9,7 +10,7 @@ wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo ap
 
 sudo apt-get update;
 sudo apt-get upgrade;
-sudo apt-get install vim git tree colordiff sysstat ack-grep htop skype subversion mysql-server memcached rabbitmq-server libgeoip1 libgeoip-dev libmemcached-dev zlib1g-dev libssl-dev python-dev build-essential mysql-server python-mysqldb libmysqlclient-dev python-virtualenv python-pip postgresql-9.3 terminator python2.6-dev libpq-dev redis-server python-numpy python-scipy python-matplotlib libxft-dev 
+sudo apt-get install vim git tree colordiff sysstat ack-grep htop skype subversion mysql-server memcached rabbitmq-server libgeoip1 libgeoip-dev libmemcached-dev zlib1g-dev libssl-dev python-dev build-essential mysql-server python-mysqldb libmysqlclient-dev python-virtualenv python-pip postgresql-9.3 postgresql-contrib terminator python2.6-dev libpq-dev apache2-utils curl redis-server python-numpy python-scipy python-matplotlib libxft-dev 
 
 #store git password
 sudo apt-get install libgnome-keyring-dev
@@ -73,6 +74,10 @@ echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
 echo "export HISTSIZE=10000" >> ~/.bashrc
 
 
+# sudo vim /etc/postgresql/9.3/main/postgresql.conf
+# shared_preload_libraries = 'pg_stat_statements'
+# CREATE EXTENSION pg_stat_statements
+
 #sudo vim /etc/postgresql/9.3/main/pg_hba.conf
 #
 ## исправляем в этой строке peer на md5
@@ -89,6 +94,7 @@ sudo wget http://hg.rabbitmq.com/rabbitmq-management/raw-file/rabbitmq_v2_8_7/bi
 sudo chmod +x /usr/local/bin/rabbitmqadmin
 sudo sh -c 'rabbitmqadmin --bash-completion > /etc/bash_completion.d/rabbitmqadmin'
 
+sudo /usr/lib/rabbitmq/bin/rabbitmq-plugins enable rabbit
 sudo rabbitmqctl add_user niko qweR123$
 sudo rabbitmqctl add_vhost /niko
 sudo rabbitmqctl set_permissions -p /niko niko ".*" ".*" ".*"
@@ -107,7 +113,10 @@ transaction-isolation = READ-COMMITTED
 default-time-zone = '+00:00'
 
 
+echo "export HISTSIZE=10000" >> ~/.bashrc
 USEFUL
 ======
 git show remote origin
 git log --graph --color-words --color --source --decorate --all
+
+glog = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) - %C(dim white)%an%C(reset)%C(bold yellow)%d%C(reset)' --all
